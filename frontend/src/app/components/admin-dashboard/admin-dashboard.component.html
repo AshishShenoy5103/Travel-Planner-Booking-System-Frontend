@@ -1,0 +1,47 @@
+<div class="bg-white rounded-lg shadow-md p-6 mb-8 w-full max-w-full">
+  <div class="flex justify-between items-center mb-6">
+    <h3 class="text-2xl font-semibold text-gray-800">Admin Profile</h3>
+  </div>
+
+  <div class="flex flex-col md:flex-row gap-4 items-start w-full">
+    <!-- Profile initials circle -->
+    <div
+      class="w-32 h-32 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-5xl select-none flex-shrink-0"
+    >
+      {{ initials }}
+    </div>
+
+    <!-- Profile details -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 flex-grow">
+      <div class="px-20">
+        <label class="text-gray-500 text-sm">Full Name</label>
+        <p class="font-medium text-gray-800">{{ firstName }} {{ lastName }}</p>
+      </div>
+
+      <div class="px-20">
+        <label class="text-gray-500 text-sm">Email</label>
+        <p class="font-medium text-gray-800 break-words">{{ email }}</p>
+      </div>
+
+      <div class="px-20">
+        <label class="text-gray-500 text-sm">Phone Number</label>
+        <p class="font-medium text-gray-800">{{ phoneNumber }}</p>
+      </div>
+
+      <div class="px-20">
+        <label class="text-gray-500 text-sm">City</label>
+        <p class="font-medium text-gray-800">{{ city }}</p>
+      </div>
+
+      <div class="px-20">
+        <label class="text-gray-500 text-sm">Aadhar Number</label>
+        <p class="font-medium text-gray-800">{{ aadharNumber }}</p>
+      </div>
+
+      <div class="px-20">
+        <label class="text-gray-500 text-sm">Account Created</label>
+        <p class="font-medium text-gray-800">{{ createdAt | date:'medium' }}</p>
+      </div>
+    </div>
+  </div>
+</div>

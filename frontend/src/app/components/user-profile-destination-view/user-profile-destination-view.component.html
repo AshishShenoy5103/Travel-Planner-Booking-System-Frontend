@@ -1,0 +1,78 @@
+<div *ngIf="booking" class="max-w-6xl mx-auto mt-10 p-6 bg-gray-100 rounded-lg shadow-md flex flex-col md:flex-row gap-8">
+
+  <!-- Booking Details - Left -->
+  <div class="md:w-1/2 bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b pb-3">Booking Details</h2>
+
+    <div class="space-y-4 text-gray-700">
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-semibold text-gray-800">Destination:</span>
+        <span>{{ booking.destination }}</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-semibold text-gray-800">Rate:</span>
+        <span>{{ booking.rate | currency:'INR':'symbol':'1.0-0' }}</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-semibold text-gray-800">Booking Date:</span>
+        <span>{{ booking.bookingDate | date:'longDate' }}</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-semibold text-gray-800">Number of People:</span>
+        <span>{{ booking.numberOfPeople }}</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-semibold text-gray-800">Created At:</span>
+        <span>{{ booking.createdAt | date:'medium' }}</span>
+      </div>
+
+      <div class="flex justify-between pb-2">
+        <span class="font-semibold text-gray-800">Status:</span>
+        <span
+          [ngClass]="{
+            'text-green-600': booking.status.toLowerCase() === 'confirmed',
+            'text-yellow-600': booking.status.toLowerCase() === 'pending',
+            'text-red-600': booking.status.toLowerCase() === 'cancelled'
+          }"
+          class="font-semibold"
+        >
+          {{ booking.status }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Itinerary - Right -->
+  <div class="md:w-1/2 bg-white rounded-lg shadow-md p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-2xl font-semibold text-gray-800">Trip Itinerary: {{ booking.destination }}</h3>
+      <div class="text-sm text-gray-500">{{ booking.bookingDate | date:'longDate' }}</div>
+    </div>
+
+    <div class="relative space-y-6">
+      <!-- Reusable Timeline Item Template -->
+      <ng-container *ngFor="let item of itineraryItems">
+        <div class="timeline-item relative pl-12">
+          <div
+            class="absolute left-0 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-lg"
+            [ngStyle]="{'background-color': item.color}"
+            [innerHTML]="item.icon"
+          >
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg ml-2">
+            <span class="font-bold text-gray-800">{{ item.time }}</span>
+            <span class="text-gray-500 ml-2">— {{ item.description }}</span>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!booking" class="text-center mt-10 text-gray-500 text-lg">
+  Loading booking details...
+</div>

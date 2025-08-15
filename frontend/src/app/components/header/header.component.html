@@ -1,0 +1,32 @@
+<!-- Header/Navigation -->
+ <div id="hero"></div>
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-bus text-3xl text-blue-500"></i>
+      <span class="text-2xl font-bold text-gray-800">Voyago</span>
+    </div>
+
+    <div class="hidden md:flex space-x-8">
+      <a (click)="toHome()" routerLink="/home" routerLinkActive="active" class="nav-link active font-medium text-gray-700 hover:text-blue-500 transition">Home</a>
+      <a (click)="toDestinations()" routerLink="/home" routerLinkActive="active" class="nav-link font-medium text-gray-700 hover:text-blue-500 transition">Destinations</a>
+      <a (click)="toBookings()" routerLink="/home" routerLinkActive="active" class="nav-link font-medium text-gray-700 hover:text-blue-500 transition">Bookings</a>
+      <a routerLink="/user/profile" routerLinkActive="active" class="nav-link font-medium text-gray-700 hover:text-blue-500 transition">My Trips</a>
+      <a routerLink="/user/profile" routerLinkActive="active" class="nav-link font-medium text-gray-700 hover:text-blue-500 transition">Itinerary</a>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <div class="relative group">
+        <button (click)="toggleDropdown()" class="flex items-center space-x-2">
+          <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-medium">{{initials}}</div>
+          <span class="hidden md:inline text-gray-700">{{firstName}} {{lastName}}</span>
+          <i class="fas fa-chevron-down text-xs text-gray-500"></i>
+        </button>
+        <div *ngIf="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+          <a routerLink="/user/profile" routerLinkActive="active" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+          <a (click)="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

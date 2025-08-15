@@ -1,0 +1,90 @@
+<div class="bg-white rounded-lg shadow-md p-6 mb-8">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-xl font-semibold text-gray-800">Booking Management</h2>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Booking ID</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User ID</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destination</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr *ngFor="let booking of bookings" class="hover:bg-gray-50">
+          <td class="px-6 py-4 whitespace-nowrap">{{ booking.bookingId }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ booking.userId }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ booking.destination }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span
+              [ngClass]="{
+                'bg-green-100 text-green-800': booking.status.toUpperCase() === 'CONFIRMED',
+                'bg-yellow-100 text-yellow-800': booking.status.toUpperCase() === 'PENDING',
+                'bg-blue-100 text-blue-800': booking.status.toUpperCase() === 'COMPLETED',
+                'bg-red-100 text-red-800': booking.status.toUpperCase() === 'CANCELLED'
+              }"
+              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+            >
+              {{ booking.status }}
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+            <button
+              class="bg-blue-600 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700"
+              (click)="viewBooking(booking.bookingId)"
+            >
+              <i class="fas fa-eye mr-1"></i>View
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="bookings.length === 0">
+          <td colspan="5" class="text-center py-4 text-gray-500">No bookings found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<!-- Modal for Viewing Booking Details -->
+<div
+  *ngIf="selectedBooking"
+  class="fixed inset-0 bg-transparent backdrop-blur-sm flex justify-center items-center z-50"
+>
+  <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative">
+    <button
+      (click)="closeBookingModal()"
+      class="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+    >
+      <i class="fas fa-times text-xl"></i>
+    </button>
+
+    <h3 class="text-xl font-semibold mb-4">Booking Details</h3>
+    <div class="space-y-2">
+      <p><strong>Booking ID:</strong> {{ selectedBooking.bookingId }}</p>
+      <p><strong>Destination:</strong> {{ selectedBooking.destination }}</p>
+      <p><strong>Rate:</strong> ₹{{ selectedBooking.rate | number }}</p>
+      <p><strong>Booking Date:</strong> {{ selectedBooking.bookingDate | date:'mediumDate' }}</p>
+      <p><strong>Number of People:</strong> {{ selectedBooking.numberOfPeople }}</p>
+      <p><strong>Created At:</strong> {{ selectedBooking.createdAt | date:'medium' }}</p>
+      <p><strong>Status:</strong>
+        <span
+          [ngClass]="{
+            'text-green-600 font-bold': selectedBooking.status.toUpperCase() === 'CONFIRMED',
+            'text-yellow-600 font-bold': selectedBooking.status.toUpperCase() === 'PENDING',
+            'text-blue-600 font-bold': selectedBooking.status.toUpperCase() === 'COMPLETED',
+            'text-red-600 font-bold': selectedBooking.status.toUpperCase() === 'CANCELLED'
+          }"
+        >
+          {{ selectedBooking.status }}
+        </span>
+      </p>
+      <p><strong>User Name:</strong> {{ selectedBooking.userName }}</p>
+      <p><strong>User ID:</strong> {{ selectedBooking.userId }}</p>
+    </div>
+  </div>
+</div>

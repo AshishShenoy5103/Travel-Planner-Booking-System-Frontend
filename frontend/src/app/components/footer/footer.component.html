@@ -1,0 +1,62 @@
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Company Info -->
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <i class="fas fa-bus text-3xl text-blue-500"></i>
+          <span class="text-2xl font-bold">Voyago</span>
+        </div>
+        <p class="text-gray-400 mb-4">Making travel planning effortless and enjoyable</p>
+        <div class="flex space-x-4">
+          <a (click)="toHome()" routerLink="/home" routerLinkActive="active" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a (click)="toHome()" routerLink="/home" routerLinkActive="active" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a (click)="toHome()" routerLink="/home" routerLinkActive="active" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a (click)="toHome()" routerLink="/home" routerLinkActive="active" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a (click)="toHome()" routerLink="/home" routerLinkActive="active" class="text-gray-400 hover:text-white transition">Home</a></li>
+          <li><a (click)="toDestinations()" routerLink="/home" routerLinkActive="active" class="text-gray-400 hover:text-white transition">Destinations</a></li>
+          <li><a (click)="toBookings()" routerLink="/home" routerLinkActive="active" class="text-gray-400 hover:text-white transition">Bookings</a></li>
+          <li><a routerLink="/user/profile" routerLinkActive="active" class="text-gray-400 hover:text-white transition">My Trips</a></li>
+          <li><a routerLink="/user/profile" routerLinkActive="active" class="text-gray-400 hover:text-white transition">Itinerary</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Support</h3>
+        <ul class="space-y-2">
+          <li><a (click)="toHome()" routerLink="/faq" routerLinkActive="active" class="text-gray-400 hover:text-white transition">FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fas fa-map-marker-alt mt-1 mr-3 text-blue-400"></i>
+            <span class="text-gray-400">Mangalore, Karnataka, India</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-phone-alt mr-3 text-blue-400"></i>
+            <span class="text-gray-400">+91-xxx987654</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-envelope mr-3 text-blue-400"></i>
+            <span class="text-gray-400">{{email}}</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</footer>

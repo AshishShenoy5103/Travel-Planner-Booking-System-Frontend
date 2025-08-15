@@ -1,0 +1,107 @@
+<div class="bg-white rounded-lg shadow-md p-6 mb-8 w-full max-w-full">
+
+  <!-- Heading -->
+  <h2 class="text-2xl font-semibold text-gray-800 mb-6">Edit Booking</h2>
+
+  <!-- Search Bar -->
+  <div class="flex mb-6">
+    <input
+      type="number"
+      placeholder="Enter Booking ID"
+      [(ngModel)]="searchBookingId"
+      class="border border-gray-300 rounded-l-md p-2 flex-grow"
+    />
+    <button
+      (click)="fetchBooking()"
+      class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700"
+    >
+      <i class="fas fa-search mr-2"></i>Search
+    </button>
+  </div>
+
+  <!-- Booking Card -->
+  <div *ngIf="booking" class="bg-white rounded-lg shadow-md p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-2xl font-semibold text-gray-800">Booking Information</h3>
+      <div>
+        <button
+          class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 mr-2"
+          *ngIf="!editMode"
+          (click)="onEdit()"
+        >
+          <i class="fas fa-edit mr-2"></i>Edit Status
+        </button>
+        <button
+          *ngIf="editMode"
+          class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 mr-2"
+          (click)="onSave()"
+        >
+          <i class="fas fa-save mr-2"></i>Save
+        </button>
+        <button
+          *ngIf="editMode"
+          class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 mr-2"
+          (click)="onCancel()"
+        >
+          <i class="fas fa-times mr-2"></i>Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+
+      <!-- Booking ID -->
+      <div>
+        <label class="text-gray-500 text-sm">Booking ID</label>
+        <p class="font-medium text-gray-800">{{ booking.bookingId }}</p>
+      </div>
+
+      <!-- Destination -->
+      <div>
+        <label class="text-gray-500 text-sm">Destination</label>
+        <p class="font-medium text-gray-800">{{ booking.destination }}</p>
+      </div>
+
+      <!-- Booking Date -->
+      <div>
+        <label class="text-gray-500 text-sm">Booking Date</label>
+        <p class="font-medium text-gray-800">{{ booking.bookingDate | date:'mediumDate' }}</p>
+      </div>
+
+      <!-- User Name -->
+      <div>
+        <label class="text-gray-500 text-sm">User</label>
+        <p class="font-medium text-gray-800">{{ booking.userName }}</p>
+      </div>
+
+      <!-- Number of People -->
+      <div>
+        <label class="text-gray-500 text-sm">Travelers</label>
+        <p class="font-medium text-gray-800">{{ booking.numberOfPeople }}</p>
+      </div>
+
+      <!-- Status -->
+      <div>
+        <label class="text-gray-500 text-sm">Status</label>
+        <select
+          *ngIf="editMode"
+          [(ngModel)]="booking.status"
+          class="w-full border border-gray-300 rounded-md p-2"
+        >
+          <option *ngFor="let status of allowedStatuses" [value]="status">
+            {{ status }}
+          </option>
+        </select>
+        <p class="font-medium text-gray-800" *ngIf="!editMode">{{ booking.status }}</p>
+      </div>
+
+      <!-- Created At -->
+      <div>
+        <label class="text-gray-500 text-sm">Created At</label>
+        <p class="font-medium text-gray-800">{{ booking.createdAt | date:'medium' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="!booking && searchClicked" class="text-red-500 mt-4">Booking not found</p>
+</div>

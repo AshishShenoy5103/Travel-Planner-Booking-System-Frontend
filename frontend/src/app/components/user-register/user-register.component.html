@@ -1,0 +1,127 @@
+<section id="signup" class="py-16 bg-gray-400" >
+  <div class="w-full max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden mt-10">
+
+    <div class="flex items-center space-x-2 mb-3 mt-2 justify-center">
+      <i class="fas fa-bus text-3xl text-blue-500 mt-1"></i>
+      <span class="text-2xl font-bold text-gray-800 my-2">Voyago</span>
+    </div>
+
+    <!-- Header -->
+    <div class="bg-indigo-600 py-4 px-6">
+      <h1 class="text-2xl font-bold text-white">Sign Up</h1>
+      <p class="text-indigo-100">Create your account to get started</p>
+    </div>
+
+    <!-- Form -->
+    <form class="p-6 space-y-4" (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm">
+
+      <!-- First Name -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          <i class="fas fa-user mr-2 text-indigo-600"></i> First Name
+        </label>
+        <input type="text" [(ngModel)]="firstName" name="firstName" required placeholder="Enter your first name" #firstNameRef="ngModel"
+          class="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+          <div *ngIf="firstNameRef.invalid && (firstNameRef.dirty || firstNameRef.touched || signupForm.submitted)" class="text-red-500 text-sm">
+            First name is required.
+          </div>
+      </div>
+
+      <!-- Last Name -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          <i class="fas fa-user mr-2 text-indigo-600"></i> Last Name
+        </label>
+        <input type="text" [(ngModel)]="lastName" name="lastName" required placeholder="Enter your last name" #lastNameRef="ngModel"
+          class="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+          <div *ngIf="lastNameRef.invalid && (lastNameRef.dirty || lastNameRef.touched || signupForm.submitted)" class="text-red-500 text-sm">
+            Last name is required.
+          </div>
+      </div>
+
+      <!-- Email -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          <i class="fas fa-envelope mr-2 text-indigo-600"></i> Email Address
+        </label>
+        <input type="email" [(ngModel)]="email" name="email" required placeholder="Enter your email" #emailRef="ngModel" pattern="^[a-zA-Z0-9._%+-]+&#64;gmail\.com$"
+          class="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+          <div *ngIf="emailRef.invalid && (emailRef.touched || signupForm.submitted)" class="text-red-500 text-sm">
+            <small *ngIf="emailRef.errors?.['pattern']">Email must end with &#64;gmail.com.</small>
+            <span *ngIf="emailRef.errors?.['required']">Email is required.</span>
+            <span *ngIf="emailRef.errors?.['email']">Enter a valid email.</span>
+          </div>
+      </div>
+
+      <!-- Password -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          <i class="fas fa-lock mr-2 text-indigo-600"></i> Password
+        </label>
+        <input type="password" [(ngModel)]="password" name="password" required placeholder="Enter your password" #passwordRef="ngModel" minlength="6"
+          class="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+          <div *ngIf="passwordRef.invalid && (passwordRef.touched || signupForm.submitted)" class="text-red-500 text-sm">
+            <span *ngIf="passwordRef.errors?.['required']">Password is required.</span>
+            <span *ngIf="passwordRef.errors?.['minlength']">Password must be at least 6 characters.</span>
+          </div>
+      </div>
+
+      <!-- Aadhar -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          <i class="fas fa-id-card mr-2 text-indigo-600"></i> Aadhar Number
+        </label>
+        <input type="text" [(ngModel)]="aadharNumber" name="aadharNumber" required maxlength="12" #aadharRef="ngModel" pattern="[0-9]{12}"
+          placeholder="Enter your 12-digit Aadhar"
+          class="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+          <div *ngIf="aadharRef.invalid && (aadharRef.touched || signupForm.submitted)" class="text-red-500 text-sm">
+            <span *ngIf="aadharRef.errors?.['required']">Aadhar number is required.</span>
+            <span *ngIf="aadharRef.errors?.['pattern']">Aadhar must be 12 digits.</span>
+          </div>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          <i class="fas fa-phone mr-2 text-indigo-600"></i> Phone Number
+        </label>
+        <input type="tel" [(ngModel)]="phoneNumber" name="phoneNumber" required pattern="[0-9]{10}" #phoneRef="ngModel" maxlength="10"
+          placeholder="Enter your 10-digit phone number"
+          class="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+          <div *ngIf="phoneRef.invalid && (phoneRef.touched || signupForm.submitted)" class="text-red-500 text-sm">
+            <span *ngIf="phoneRef.errors?.['required']">Phone number is required.</span>
+            <span *ngIf="phoneRef.errors?.['pattern']">Phone number must be 10 digits.</span>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          <i class="fas fa-city mr-2 text-indigo-600"></i> City
+        </label>
+        <input type="text" [(ngModel)]="city" name="city" required placeholder="Enter your city" #cityRef="ngModel"
+          class="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+          <div *ngIf="cityRef.invalid && (cityRef.touched || signupForm.submitted)" class="text-red-500 text-sm">
+            City is required.
+          </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="pt-4">
+        <button type="submit" [disabled]="signupForm.invalid"
+          class="w-full flex justify-center py-3 px-4 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow-sm disabled:cursor-not-allowed disabled:hover:bg-gray-400">
+          <i class="fas fa-user-plus mr-2 pt-1"></i> Sign Up
+        </button>
+      </div>
+
+      <!-- Login link inside the card -->
+      <div class="text-center mt-6">
+        <p class="text-sm text-gray-600">
+          Already have an account?
+          <a routerLink="/login/user" routerLinkActive="active" class="text-blue-600 hover:underline font-medium">Login</a>
+        </p>
+      </div>
+
+    </form>
+  </div>
+</section>

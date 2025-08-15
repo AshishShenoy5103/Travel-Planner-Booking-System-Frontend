@@ -1,0 +1,161 @@
+<div class="bg-white rounded-lg shadow-md p-6 mb-8 w-full max-w-full">
+
+  <!-- Heading -->
+  <h2 class="text-2xl font-semibold text-gray-800 mb-6">Edit User Profile</h2>
+
+  <!-- Search Bar -->
+  <div class="flex mb-6">
+    <input
+      type="number"
+      placeholder="Enter User ID"
+      [(ngModel)]="searchUserId"
+      class="border border-gray-300 rounded-l-md p-2 flex-grow"
+    />
+    <button
+      (click)="fetchUser()"
+      class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700"
+    >
+      <i class="fas fa-search mr-2"></i>Search
+    </button>
+  </div>
+
+  <!-- User Card -->
+  <div *ngIf="user" class="bg-white rounded-lg shadow-md p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-2xl font-semibold text-gray-800">Profile Information</h3>
+      <div>
+        <button
+          class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 mr-2"
+          *ngIf="!editMode"
+          (click)="onEdit()"
+        >
+          <i class="fas fa-edit mr-2"></i>Edit Profile
+        </button>
+
+        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700" *ngIf="!editMode" (click)="onDelete()">
+          <i class="fas fa-trash mr-2"></i>Delete Profile
+        </button>
+        <button
+          *ngIf="editMode"
+          class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 mr-2"
+          (click)="onSave()"
+        >
+          <i class="fas fa-save mr-2"></i>Save
+        </button>
+        <button
+          *ngIf="editMode"
+          class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 mr-2"
+          (click)="onCancel()"
+        >
+          <i class="fas fa-times mr-2"></i>Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-4 items-start w-full">
+      <div class="w-32 h-32 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-5xl select-none flex-shrink-0">
+        {{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 flex-grow">
+
+        <!-- First Name -->
+        <div class="px-20">
+          <label class="text-gray-500 text-sm">First Name</label>
+          <input
+            *ngIf="editMode"
+            type="text"
+            [(ngModel)]="user.firstName"
+            class="w-full border border-gray-300 rounded-md p-2"
+          />
+          <p class="font-medium text-gray-800" *ngIf="!editMode">{{ user.firstName }}</p>
+        </div>
+
+        <!-- Last Name -->
+        <div class="px-20">
+          <label class="text-gray-500 text-sm">Last Name</label>
+          <input
+            *ngIf="editMode"
+            type="text"
+            [(ngModel)]="user.lastName"
+            class="w-full border border-gray-300 rounded-md p-2"
+          />
+          <p class="font-medium text-gray-800" *ngIf="!editMode">{{ user.lastName }}</p>
+        </div>
+
+        <!-- Email -->
+        <div class="px-20">
+          <label class="text-gray-500 text-sm">Email</label>
+          <input
+            *ngIf="editMode"
+            type="email"
+            [(ngModel)]="user.email"
+            class="w-full border border-gray-300 rounded-md p-2"
+          />
+          <p class="font-medium text-gray-800" *ngIf="!editMode">{{ user.email }}</p>
+        </div>
+
+        <!-- Phone -->
+        <div class="px-20">
+          <label class="text-gray-500 text-sm">Phone Number</label>
+          <input
+            *ngIf="editMode"
+            type="text"
+            [(ngModel)]="user.phoneNumber"
+            class="w-full border border-gray-300 rounded-md p-2"
+          />
+          <p class="font-medium text-gray-800" *ngIf="!editMode">{{ user.phoneNumber }}</p>
+        </div>
+
+        <!-- City -->
+        <div class="px-20">
+          <label class="text-gray-500 text-sm">City</label>
+          <input
+            *ngIf="editMode"
+            type="text"
+            [(ngModel)]="user.city"
+            class="w-full border border-gray-300 rounded-md p-2"
+          />
+          <p class="font-medium text-gray-800" *ngIf="!editMode">{{ user.city }}</p>
+        </div>
+
+        <!-- Aadhar Number -->
+        <div class="px-20">
+          <label class="text-gray-500 text-sm">Aadhar Number</label>
+          <input
+            *ngIf="editMode"
+            type="text"
+            [(ngModel)]="user.aadharNumber"
+            class="w-full border border-gray-300 rounded-md p-2"
+          />
+          <p class="font-medium text-gray-800" *ngIf="!editMode">{{ user.aadharNumber }}</p>
+        </div>
+
+        <!-- User Type (Read-only) -->
+        <div class="px-20">
+          <label class="text-gray-500 text-sm">Role</label>
+          <input
+            type="text"
+            [value]="user.userType"
+            disabled
+            class="w-full border border-gray-300 rounded-md p-2 bg-gray-100"
+          />
+        </div>
+
+        <!-- Created At (Read-only) -->
+        <div class="px-20">
+          <label class="text-gray-500 text-sm">Created At</label>
+          <input
+            type="text"
+            [value]="user.createdAt | date:'medium'"
+            disabled
+            class="w-full border border-gray-300 rounded-md p-2 bg-gray-100"
+          />
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="!user && searchClicked" class="text-red-500 mt-4">User not found</p>
+</div>
