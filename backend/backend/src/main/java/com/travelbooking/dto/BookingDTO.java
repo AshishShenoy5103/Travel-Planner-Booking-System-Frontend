@@ -1,0 +1,19 @@
+package com.travelbooking.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class BookingDTO {
+    private String destination;
+    private Integer rate;
+    private LocalDate bookingDate;
+    private Integer numberOfPeople;
+}
