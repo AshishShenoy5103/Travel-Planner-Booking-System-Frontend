@@ -74,9 +74,20 @@ export class UserProfileDestinationComponent {
 
     if (confirm(`Are you sure you want to cancel the booking for ${destination}?`)) {
 
-      this.http.delete<{ message: string }>(`/api/user/booking/${id}`, {headers: {Authorization: `Bearer ${this.token}`}}).subscribe({
+      // this.http.delete<{ message: string }>(`/api/user/booking/${id}`, {headers: {Authorization: `Bearer ${this.token}`}}).subscribe({
+      //   next: (res) => {
+      //     alert(res.message);
+      //     this.fetchBookings();
+      //   },
+      //   error: (err) => {
+      //     console.error(err);
+      //     alert('Failed to cancel booking. Please try again.');
+      //   }
+      // });
+
+      this.http.put<{ message: string }>(`/api/user/booking/${id}/cancel`, {}, { headers: { Authorization: `Bearer ${this.token}` } }).subscribe({
         next: (res) => {
-          alert(res.message);
+          alert('Booking cancelled successfully');
           this.fetchBookings();
         },
         error: (err) => {

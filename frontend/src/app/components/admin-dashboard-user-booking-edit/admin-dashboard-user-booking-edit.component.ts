@@ -43,7 +43,7 @@ export class AdminDashboardUserBookingEditComponent {
     if (status === 'PENDING') {
       this.allowedStatuses = ['PENDING', 'CONFIRMED', 'CANCELLED'];
     } else if (status === 'CONFIRMED') {
-      this.allowedStatuses = ['CONFIRMED', 'COMPLETED'];
+      this.allowedStatuses = ['CONFIRMED', 'COMPLETED', 'CANCELLED'];
     } else {
       this.allowedStatuses = [status]; // No changes allowed
     }
